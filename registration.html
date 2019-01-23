@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Registration form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="validate.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="form">
+            <h2>Registration form</h2>
+        </div>
+
+        <div id="register">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+                <span id="error_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Id:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                <span id="error_email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile No" name="mobile"
+                    minlength="10" maxlength="10" required>
+                <span id="error_phone" class="text-danger"></span>
+            </div>
+            <!--<div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" value="male" checked>Male
+                    </label>r
+
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" value="female" checked>Female
+                    </label>
+                </div>-->
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+                <span id="error_pwd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="confirmPwd">Confirm Password:</label>
+                <input type="password" class="form-control" id="confirmPwd" placeholder="Enter same as password" name="pwd1"
+                    required>
+                <span id="error_confirmPwd" class="text-danger"></span>
+            </div>
+
+            <div class="checkbox" id="remember-me">
+                <label><input type="checkbox" name="remember"> Remember me</label>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="submit">Submit</button>
+        <button type="button" class="btn btn-secondary" onClick="myfunction()">Reset</button>
+
+    </div>
+
+
+</body>
+
+</html>
+
+
+<!--
+<script>
+
+    $(document).ready(function () {
+        $('#register').click(function () {
+            var error_name = '';
+            var error_email = '';
+            var error_pwd = '';
+            var error_pwd1 = '';
+            var error_phone = '';
+            var email_regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i;
+            var phone_regex = /(?=.*?\d{3}( |-|.)?\d{4})((?:\+?(?:1)(?:\1|\s*?))?(?:(?:\d{3}\s*?)|(?:\((?:\d{3})\)\s*?))\1?(?:\d{3})\1?(?:\d{4})(?:\s*?(?:#|(?:ext\.?))(?:\d{1,5}))?)\b/i;
+            var name_regex = /[A-Z\.\-'\s]*/i;
+
+            if ($.trim($('#name').val()).length == 0) {
+                error_name = 'Name is required';
+                $('#error_name').text(error_name);
+                $('#name').addClass('has-error');
+            }
+            else {
+                if (!name_regex.test($('#email').val())) {
+                    error_email = 'Invalid name';
+                    $('#error_name').text(error_name);
+                    $('#name').addClass('has-error');
+                }
+                else {
+                    error_name = '';
+                    $('#error_name').text(error_name);
+                    $('#name').removeClass('has-error');
+                }
+            }
+
+            if ($.trim($('#email').val()).length == 0) {
+                error_email = 'Email is required';
+                $('#error_email').text(error_email);
+                $('#email').addClass('has-error');
+            }
+            else {
+                if (!email_regex.test($('#email').val())) {
+                    error_email = 'Invalid email';
+                    $('#error_email').text(error_email);
+                    $('#email').addClass('has-error');
+                }
+                else {
+                    error_email = '';
+                    $('#error_email').text(error_email);
+                    $('#email').removeClass('has-error');
+                }
+            }
+
+            if ($.trim($('#mobile').val()).length == 0) {
+                error_phone = 'Contact number is required';
+                $('#error_phone').text(error_phone);
+                $('#mobile').addClass('has-error');
+            }
+            else {
+                if (!phone_regex.test($('#mobile').val())) {
+                    error_phone = 'Invalid contact number';
+                    $('#error_phone').text(error_phone);
+                    $('#mobile').addClass('has-error');
+                }
+                else {
+                    error_phone = '';
+                    $('#error_phone').text(error_phone);
+                    $('#mobile').removeClass('has-error');
+                }
+            }
+
+            if ($.trim($('#pwd').val()).length == 0) {
+                error_pwd = 'Password is required';
+                $('#error_pwd').text(error_pwd);
+                $('#pwd').addClass('has-error');
+            }
+            else {
+                error_pwd = '';
+                $('#error_pwd').text(error_pwd);
+                $('#pwd').removeClass('has-error');
+            }
+
+            if ($.trim($('#pwd1').val()).length == 0) {
+                error_pwd1 = 'Confirm password is required';
+                $('#error_pwd1').text(error_pwd1);
+                $('#pwd1').addClass('has-error');
+            }
+            else {
+                if (!pwd.test($('#pwd1').val())) {
+                    error_pwd1 = 'Invalid confirm password';
+                    $('#error_pwd1').text(error_pwd1);
+                    $('#pwd1').addClass('has-error');
+                }
+                else {
+                    error_pwd1 = '';
+                    $('#error_pwd1').text(error_pwd1);
+                    $('#pwd1').removeClass('has-error');
+                }
+            }
+
+            if (error_name !== 0 || error_phone != 0 || error_email != 0 || error_pwd != 0 || error_pwd1 != 0) {
+                return false;
+            }
+            else {
+                $('#name').removeClass('form-group');
+                $('#email').removeClass('form-group');
+                $('#mobile').removeClass('form-group');
+                $('#pwd').removeClass('form-group');
+                $('#pwd1').removeClass('form-group');
+
+            }
+        });
+    });
+</script>-->
